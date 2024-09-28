@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfahn3dxap6q0"]
+
+[ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="1_3c4ss"]
+[ext_resource type="PackedScene" uid="uid://cclck3rdfon3k" path="res://prefabs/staticObject.tscn" id="2_hedi2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pvuvt"]
+
+[node name="Game" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_3c4ss")]
+position = Vector2(677, 305)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(536, 646)
+shape = SubResource("WorldBoundaryShape2D_pvuvt")
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_hedi2")]
+position = Vector2(687, 562)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_hedi2")]
+position = Vector2(389, 459)
