@@ -1,33 +1,60 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400
-const COYOTE_TIME = 0.08
+const SPEED = 200.0
+const JUMP_VELOCITY = -200
+const COYOTE_TIME = .08
 
 var ableToJump = false
 
+var isJumping = false
+
+var cTimer
+var jumpTimer
+
+func _on_ready() -> void:
+	cTimer = $CoyoteTimer
+	jumpTimer = $VarJumpTimer
+
+
 func _physics_process(delta: float) -> void:
-	# Coyote Time
-	print($Timer.time_left)
-	if is_on_floor():
-		$Timer.stop()
-	elif $Timer.is_stopped():
-		$Timer.start()
+	## Coyote Time
+	#if is_on_floor():
+		#cTimer.stop()
+	#elif cTimer.is_stopped():
+		#cTimer.start()
+	#
+	#if cTimer.is_stopped() or cTimer.time_left > cTimer.wait_time - COYOTE_TIME:
+		## if timer is running
+		#ableToJump = true
+	#else:
+		#ableToJump = false
 	
-	if $Timer.is_stopped() or $Timer.time_left > $Timer.wait_time - COYOTE_TIME:
-		# if timer is running
-		ableToJump = true
-	else:
-		ableToJump = false
+	ableToJump = true
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	print(jumpTimer.time_left)
 	# Handle jump.
-	if Input.get_axis("Up", "Down") and ableToJump:
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("Up") and ableToJump:
+		if is_on_floor():
+			jumpTimer.start()
+			jumpTimer.paused = false
+		else:
+			jumpTimer.paused = false
+		
+		isJumping = true
+	
+	if Input.is_action_pressed("Up") and isJumping:
+		if not jumpTimer.is_stopped():
+			velocity.y = JUMP_VELOCITY
+		else:
+			isJumping = false
+	if Input.is_action_just_released("Up"):
+		isJumping = false
+		jumpTimer.paused = true
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -39,6 +66,9 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func _on_coyote_timer_timeout() -> void:
+	cTimer.stop()
 
-func _on_timer_timeout() -> void:
-	$Timer.stop()
+func _on_var_jump_timer_timeout() -> void:
+	jumpTimer.stop()
+	isJumping = false

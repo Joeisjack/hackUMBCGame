@@ -27,7 +27,12 @@ sprite_frames = SubResource("SpriteFrames_yqhyj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o6vrq")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 60.0
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="VarJumpTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="VarJumpTimer" to="." method="_on_var_jump_timer_timeout"]
