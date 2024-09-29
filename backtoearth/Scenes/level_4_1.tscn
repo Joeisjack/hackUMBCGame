@@ -7,10 +7,25 @@
 [ext_resource type="PackedScene" uid="uid://xofaxm4nm0d5" path="res://prefabs/sattelite.tscn" id="4_ktmml"]
 [ext_resource type="PackedScene" uid="uid://cqvgj3uudtnew" path="res://prefabs/empty_static_object.tscn" id="5_w828o"]
 [ext_resource type="PackedScene" uid="uid://b5qsmnopyl8fl" path="res://prefabs/dynamic_sattelite.tscn" id="5_yme5e"]
-[ext_resource type="Texture2D" uid="uid://b0xbijmpu7iv6" path="res://Sprites/Planets/Saturn-1.png.png" id="6_me0bn"]
+[ext_resource type="Texture2D" uid="uid://b8fr6l8e7rsai" path="res://Sprites/Planets/Moon-1.png.png" id="6_cdon0"]
 [ext_resource type="PackedScene" uid="uid://bdbaod43qcg7i" path="res://prefabs/debris_1.tscn" id="8_jqor2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_35spr"]
+
+[sub_resource type="Animation" id="Animation_a310q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(986, 559)]
+}
 
 [sub_resource type="Animation" id="Animation_632qy"]
 resource_name = "move"
@@ -28,7 +43,13 @@ tracks/0/keys = {
 "values": [Vector2(986, 559), Vector2(850, 559)]
 }
 
-[sub_resource type="Animation" id="Animation_a310q"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qich"]
+_data = {
+"RESET": SubResource("Animation_a310q"),
+"move": SubResource("Animation_632qy")
+}
+
+[sub_resource type="Animation" id="Animation_n4lt6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -40,13 +61,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(986, 559)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qich"]
-_data = {
-"RESET": SubResource("Animation_a310q"),
-"move": SubResource("Animation_632qy")
+"values": [Vector2(543, 111)]
 }
 
 [sub_resource type="Animation" id="Animation_8436w"]
@@ -65,7 +80,13 @@ tracks/0/keys = {
 "values": [Vector2(543, 111), Vector2(638.73, 111)]
 }
 
-[sub_resource type="Animation" id="Animation_n4lt6"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5luw"]
+_data = {
+"RESET": SubResource("Animation_n4lt6"),
+"move": SubResource("Animation_8436w")
+}
+
+[sub_resource type="Animation" id="Animation_48v75"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -77,13 +98,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(543, 111)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5luw"]
-_data = {
-"RESET": SubResource("Animation_n4lt6"),
-"move": SubResource("Animation_8436w")
+"values": [Vector2(1167, 582)]
 }
 
 [sub_resource type="Animation" id="Animation_b32s8"]
@@ -103,7 +118,13 @@ tracks/0/keys = {
 "values": [Vector2(1167, 582), Vector2(889, -29)]
 }
 
-[sub_resource type="Animation" id="Animation_48v75"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ud18s"]
+_data = {
+"RESET": SubResource("Animation_48v75"),
+"move": SubResource("Animation_b32s8")
+}
+
+[sub_resource type="Animation" id="Animation_5v0fv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -115,13 +136,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1167, 582)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ud18s"]
-_data = {
-"RESET": SubResource("Animation_48v75"),
-"move": SubResource("Animation_b32s8")
+"values": [Vector2(767, 668)]
 }
 
 [sub_resource type="Animation" id="Animation_g7ouy"]
@@ -141,7 +156,13 @@ tracks/0/keys = {
 "values": [Vector2(767, 668), Vector2(1109, -2)]
 }
 
-[sub_resource type="Animation" id="Animation_5v0fv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_moefi"]
+_data = {
+"RESET": SubResource("Animation_5v0fv"),
+"new_animation": SubResource("Animation_g7ouy")
+}
+
+[sub_resource type="Animation" id="Animation_iy8f5"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -153,13 +174,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(767, 668)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_moefi"]
-_data = {
-"RESET": SubResource("Animation_5v0fv"),
-"new_animation": SubResource("Animation_g7ouy")
+"values": [Vector2(-3, 37)]
 }
 
 [sub_resource type="Animation" id="Animation_042qx"]
@@ -179,7 +194,13 @@ tracks/0/keys = {
 "values": [Vector2(2, 8), Vector2(245, 13), Vector2(259, -59)]
 }
 
-[sub_resource type="Animation" id="Animation_iy8f5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3g2sx"]
+_data = {
+"RESET": SubResource("Animation_iy8f5"),
+"move": SubResource("Animation_042qx")
+}
+
+[sub_resource type="Animation" id="Animation_ca4uu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -191,13 +212,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-3, 37)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3g2sx"]
-_data = {
-"RESET": SubResource("Animation_iy8f5"),
-"move": SubResource("Animation_042qx")
+"values": [Vector2(363, 670)]
 }
 
 [sub_resource type="Animation" id="Animation_f0x7t"]
@@ -217,7 +232,13 @@ tracks/0/keys = {
 "values": [Vector2(363, 670), Vector2(-19, 101)]
 }
 
-[sub_resource type="Animation" id="Animation_ca4uu"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqjjm"]
+_data = {
+"RESET": SubResource("Animation_ca4uu"),
+"move": SubResource("Animation_f0x7t")
+}
+
+[sub_resource type="Animation" id="Animation_y32bm"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -229,13 +250,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(363, 670)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqjjm"]
-_data = {
-"RESET": SubResource("Animation_ca4uu"),
-"move": SubResource("Animation_f0x7t")
+"values": [Vector2(-27, 184)]
 }
 
 [sub_resource type="Animation" id="Animation_6fadm"]
@@ -254,7 +269,13 @@ tracks/0/keys = {
 "values": [Vector2(-27, 184), Vector2(435, 670)]
 }
 
-[sub_resource type="Animation" id="Animation_y32bm"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nlb8"]
+_data = {
+"RESET": SubResource("Animation_y32bm"),
+"move": SubResource("Animation_6fadm")
+}
+
+[sub_resource type="Animation" id="Animation_lcebr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -266,13 +287,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-27, 184)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nlb8"]
-_data = {
-"RESET": SubResource("Animation_y32bm"),
-"move": SubResource("Animation_6fadm")
+"values": [Vector2(-27, 280)]
 }
 
 [sub_resource type="Animation" id="Animation_14ll0"]
@@ -290,21 +305,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-27, 280), Vector2(416, 672)]
-}
-
-[sub_resource type="Animation" id="Animation_lcebr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-27, 280)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cf8bs"]
@@ -333,7 +333,7 @@ position = Vector2(-37.89, 406.22)
 
 [node name="Sprite2D" type="Sprite2D" parent="emptyStaticObject"]
 scale = Vector2(8.1, 8.1)
-texture = ExtResource("6_me0bn")
+texture = ExtResource("6_cdon0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="emptyStaticObject"]
 shape = SubResource("CircleShape2D_35spr")
