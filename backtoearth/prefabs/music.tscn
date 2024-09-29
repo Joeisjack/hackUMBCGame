@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0rvaeinjv10w"]
+
+[ext_resource type="AudioStream" uid="uid://o1mrw7h78t0v" path="res://Audio/inst/digidancedemo.mp3" id="1_ma1d8"]
+[ext_resource type="AudioStream" uid="uid://cdwk1blyyjbdn" path="res://Audio/inst/egg (needs guitar) 133 F.mp3" id="2_0t61v"]
+[ext_resource type="AudioStream" uid="uid://m7rfd7vc1bdw" path="res://Audio/inst/lia_signature lia signature idea 2 aka 2012.mp3" id="3_1xdit"]
+[ext_resource type="AudioStream" uid="uid://56gu8nky331g" path="res://Audio/inst/mandoraminerva demo3.mp3" id="4_s826c"]
+[ext_resource type="AudioStream" uid="uid://c4fe8hw35tnbk" path="res://Audio/inst/mint demo beat 120 Dm.mp3" id="5_ls7po"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cm4md"]
+streams_count = 5
+stream_0/stream = ExtResource("1_ma1d8")
+stream_1/stream = ExtResource("2_0t61v")
+stream_2/stream = ExtResource("3_1xdit")
+stream_3/stream = ExtResource("4_s826c")
+stream_4/stream = ExtResource("5_ls7po")
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = SubResource("AudioStreamRandomizer_cm4md")
+autoplay = true
+bus = &"Music"

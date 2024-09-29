@@ -15,6 +15,14 @@ var isJumping = false
 
 @onready var playerSprite: AnimatedSprite2D = $AnimatedSprite2D
 
+
+
+@onready var thrust_sound: AudioStreamPlayer2D = $thrustSound
+@onready var move_sound: AudioStreamPlayer2D = $moveSound
+
+@onready var fuel_bar: AnimatedSprite2D = $FuelBar
+
+
 func _physics_process(delta: float) -> void:	
 	# Add the gravity.
 	if not is_on_floor():
@@ -28,6 +36,9 @@ func _physics_process(delta: float) -> void:
 	# debug
 	$"../Label".text = "Fuel: " + str(round((jumpTimer.time_left / jumpTimer.wait_time) * 100)) + "/100"
 	
+	fuel_bar.frame = 27 - floor((jumpTimer.time_left / jumpTimer.wait_time) * 27)
+	
+	
 	# Get Input direction (-1, 0, 1)
 	var direction := Input.get_axis("Left", "Right")
 	
@@ -40,12 +51,24 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.y > 0:
 		playerSprite.play("falling")
+		thrust_sound.stop()
+		if not move_sound.playing:
+			move_sound.play()
 	elif not jumpTimer.paused:
 		playerSprite.play("thrusting")
+		fuel_bar.visible = true
+		if not thrust_sound.playing:
+			thrust_sound.play()
+		move_sound.stop()
 	elif direction == 0:
 		playerSprite.play("idle")
+		thrust_sound.stop()
+		move_sound.stop()
 	else:
 		playerSprite.play("moving")
+		thrust_sound.stop()
+		if not move_sound.playing:
+			move_sound.play()
 	
 	
 	if direction:
@@ -73,6 +96,7 @@ func playerJump():
 	if is_on_floor():
 		jumpTimer.start()
 		jumpTimer.paused = true
+		fuel_bar.visible = false
 	
 	if Input.is_action_just_pressed("Up") and ableToJump:
 		if is_on_floor():
