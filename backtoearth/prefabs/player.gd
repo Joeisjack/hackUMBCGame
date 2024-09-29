@@ -17,27 +17,48 @@ func _on_ready() -> void:
 	jumpTimer = $VarJumpTimer
 
 
-func _physics_process(delta: float) -> void:
-	## Coyote Time
-	#if is_on_floor():
-		#cTimer.stop()
-	#elif cTimer.is_stopped():
-		#cTimer.start()
-	#
-	#if cTimer.is_stopped() or cTimer.time_left > cTimer.wait_time - COYOTE_TIME:
-		## if timer is running
-		#ableToJump = true
-	#else:
-		#ableToJump = false
-	
-	ableToJump = true
-	
+func _physics_process(delta: float) -> void:	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	print(jumpTimer.time_left)
+	
+	ableToJump = true
+	# print(jumpTimer.time_left)
 	# Handle jump.
+	playerJump()
+	
+	# debug
+	$"../Label".text = "Fuel: " + str(round((jumpTimer.time_left / jumpTimer.wait_time) * 100)) + "/100"
+	
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis("Left", "Right")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+
+# Unused
+func coyoteTime():
+	# Coyote Time
+	if is_on_floor():
+		cTimer.stop()
+	elif cTimer.is_stopped():
+		cTimer.start()
+	
+	if cTimer.is_stopped() or cTimer.time_left > cTimer.wait_time - COYOTE_TIME:
+		# if timer is running
+		ableToJump = true
+	else:
+		ableToJump = false
+
+func playerJump():
+	if is_on_floor():
+		jumpTimer.start()
+		jumpTimer.paused = true
+	
 	if Input.is_action_just_pressed("Up") and ableToJump:
 		if is_on_floor():
 			jumpTimer.start()
@@ -55,16 +76,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("Up"):
 		isJumping = false
 		jumpTimer.paused = true
-	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("Left", "Right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
 
 func _on_coyote_timer_timeout() -> void:
 	cTimer.stop()

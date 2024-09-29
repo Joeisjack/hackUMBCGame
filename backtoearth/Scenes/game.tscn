@@ -1,23 +1,78 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfahn3dxap6q0"]
+[gd_scene load_steps=8 format=3 uid="uid://cfahn3dxap6q0"]
 
 [ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="1_3c4ss"]
 [ext_resource type="PackedScene" uid="uid://cclck3rdfon3k" path="res://prefabs/staticObject.tscn" id="2_hedi2"]
+[ext_resource type="PackedScene" uid="uid://dtv41pj2g4udx" path="res://prefabs/Rotator.tscn" id="4_rg5ux"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pvuvt"]
+
+[sub_resource type="Animation" id="Animation_hyboh"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1080, 505), Vector2(809, 333)]
+}
+
+[sub_resource type="Animation" id="Animation_6h8sm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1080, 505)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xopyf"]
+_data = {
+"RESET": SubResource("Animation_6h8sm"),
+"move": SubResource("Animation_hyboh")
+}
 
 [node name="Game" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_3c4ss")]
-position = Vector2(677, 305)
+position = Vector2(461, 275)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-5, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(536, 646)
 shape = SubResource("WorldBoundaryShape2D_pvuvt")
 
-[node name="StaticBody2D2" parent="." instance=ExtResource("2_hedi2")]
-position = Vector2(687, 562)
+[node name="Label" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 44.0
+offset_bottom = 26.0
+text = "Fuel: 100/100"
 
-[node name="StaticBody2D3" parent="." instance=ExtResource("2_hedi2")]
-position = Vector2(389, 459)
+[node name="staticObject" parent="." instance=ExtResource("2_hedi2")]
+position = Vector2(488, 327)
+
+[node name="staticObject2" parent="." instance=ExtResource("2_hedi2")]
+position = Vector2(309, 359)
+
+[node name="AnimatableBody2D2" parent="." instance=ExtResource("4_rg5ux")]
+position = Vector2(1080, 505)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D2"]
+libraries = {
+"": SubResource("AnimationLibrary_xopyf")
+}
+autoplay = "move"

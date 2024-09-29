@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtv41pj2g4udx"]
+
+[ext_resource type="Texture2D" uid="uid://cunj3cmvdwv6g" path="res://icon.svg" id="1_5nwui"]
+[ext_resource type="PackedScene" uid="uid://b6wc32ps8c2jq" path="res://prefabs/animatableObject.tscn" id="2_5dl48"]
+
+[sub_resource type="Animation" id="Animation_7bh1r"]
+resource_name = "rotate"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-150, 100), Vector2(-150, -100), Vector2(150, -100), Vector2(150, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_23fra"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-150, 75)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e5p7t"]
+_data = {
+"RESET": SubResource("Animation_23fra"),
+"rotate": SubResource("Animation_7bh1r")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjkcb"]
+size = Vector2(112, 10)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D"]
+
+[node name="AnimatableBody2D" parent="." instance=ExtResource("2_5dl48")]
+position = Vector2(-150, 75)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_e5p7t")
+}
+autoplay = "rotate"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.908778, 0.0872684)
+texture = ExtResource("1_5nwui")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1.01608)
+shape = SubResource("RectangleShape2D_xjkcb")
