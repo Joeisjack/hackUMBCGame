@@ -1,3 +1,52 @@
-[gd_scene format=3 uid="uid://dlglnvrc4n6gp"]
+[gd_scene load_steps=11 format=3 uid="uid://dlglnvrc4n6gp"]
+
+[ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="1_2hg8h"]
+[ext_resource type="PackedScene" uid="uid://65lqufe5y4j8" path="res://prefabs/kill_zone.tscn" id="2_12i4u"]
+[ext_resource type="Texture2D" uid="uid://cfin61gpqldpx" path="res://Sprites/Planets/Uranus-1.png.png" id="3_fv2a1"]
+[ext_resource type="PackedScene" uid="uid://cm5injpwl4eap" path="res://prefabs/goal.tscn" id="3_ldq4h"]
+[ext_resource type="PackedScene" uid="uid://cqvgj3uudtnew" path="res://prefabs/empty_static_object.tscn" id="4_2ljlu"]
+[ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="4_nj2xm"]
+[ext_resource type="PackedScene" uid="uid://b5qsmnopyl8fl" path="res://prefabs/dynamic_sattelite.tscn" id="7_ka8b3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a40jx"]
+radius = 68.2642
+
+[sub_resource type="Animation" id="Animation_k4gmq"]
+resource_name = "move"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jb885"]
+_data = {
+"move": SubResource("Animation_k4gmq")
+}
 
 [node name="level3_2" type="Node2D"]
+
+[node name="BgPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(451, 447)
+texture = ExtResource("1_2hg8h")
+
+[node name="planet" parent="." instance=ExtResource("4_2ljlu")]
+position = Vector2(1137, 246)
+
+[node name="Sprite2D" type="Sprite2D" parent="planet"]
+scale = Vector2(7, 7)
+texture = ExtResource("3_fv2a1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="planet"]
+shape = SubResource("CircleShape2D_a40jx")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_nj2xm")]
+position = Vector2(1103, 134)
+
+[node name="Goal" parent="." instance=ExtResource("3_ldq4h")]
+position = Vector2(151, 323)
+
+[node name="killZone" parent="." instance=ExtResource("2_12i4u")]
+
+[node name="dynamicSattelite" parent="." instance=ExtResource("7_ka8b3")]
+position = Vector2(922, 130)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dynamicSattelite"]
+libraries = {
+"": SubResource("AnimationLibrary_jb885")
+}
