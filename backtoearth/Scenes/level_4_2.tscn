@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://h65acdd31h0w"]
+[gd_scene load_steps=19 format=3 uid="uid://bnkxpr08o62v6"]
 
 [ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="1_kdkk2"]
 [ext_resource type="PackedScene" uid="uid://cm5injpwl4eap" path="res://prefabs/goal.tscn" id="2_k2one"]
@@ -6,8 +6,87 @@
 [ext_resource type="PackedScene" uid="uid://65lqufe5y4j8" path="res://prefabs/kill_zone.tscn" id="4_qc86i"]
 [ext_resource type="PackedScene" uid="uid://cqvgj3uudtnew" path="res://prefabs/empty_static_object.tscn" id="5_ikfeq"]
 [ext_resource type="Texture2D" uid="uid://b8fr6l8e7rsai" path="res://Sprites/Planets/Moon-1.png.png" id="6_0cf7x"]
+[ext_resource type="Texture2D" uid="uid://rxjwj36fdj3y" path="res://Sprites/big_satellite_2.png" id="6_exl5f"]
+[ext_resource type="Texture2D" uid="uid://dit7hsdgovar0" path="res://Sprites/Planets/Earth-1.png.png" id="6_snv4h"]
+[ext_resource type="PackedScene" uid="uid://xofaxm4nm0d5" path="res://prefabs/sattelite.tscn" id="7_di056"]
+[ext_resource type="PackedScene" uid="uid://bdbaod43qcg7i" path="res://prefabs/debris_1.tscn" id="8_lvpou"]
+[ext_resource type="PackedScene" uid="uid://b5qsmnopyl8fl" path="res://prefabs/dynamic_sattelite.tscn" id="9_m6dyj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0bjd3"]
+
+[sub_resource type="Animation" id="Animation_tw2ww"]
+resource_name = "move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-17, 202), Vector2(1177, 205)]
+}
+
+[sub_resource type="Animation" id="Animation_1rtqw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 202)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qxvwe"]
+_data = {
+"RESET": SubResource("Animation_1rtqw"),
+"move": SubResource("Animation_tw2ww")
+}
+
+[sub_resource type="Animation" id="Animation_gymxh"]
+resource_name = "mover"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(413, 479), Vector2(342.98, 479)]
+}
+
+[sub_resource type="Animation" id="Animation_peidp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(413, 479)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gcnv1"]
+_data = {
+"RESET": SubResource("Animation_peidp"),
+"mover": SubResource("Animation_gymxh")
+}
 
 [node name="level4_2" type="Node2D"]
 
@@ -16,11 +95,10 @@ position = Vector2(387, 476)
 texture = ExtResource("1_kdkk2")
 
 [node name="Goal" parent="." instance=ExtResource("2_k2one")]
+position = Vector2(88, 398)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_j6ybx")]
 position = Vector2(1110, 310)
-
-[node name="killZone" parent="." instance=ExtResource("4_qc86i")]
 
 [node name="emptyStaticObject" parent="." instance=ExtResource("5_ikfeq")]
 position = Vector2(1107, 426)
@@ -31,3 +109,49 @@ texture = ExtResource("6_0cf7x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="emptyStaticObject"]
 shape = SubResource("CircleShape2D_0bjd3")
+
+[node name="emptyStaticObject3" parent="." instance=ExtResource("5_ikfeq")]
+position = Vector2(89, 514)
+scale = Vector2(8.1, 8.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="emptyStaticObject3"]
+texture = ExtResource("6_snv4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="emptyStaticObject3"]
+shape = SubResource("CircleShape2D_0bjd3")
+
+[node name="emptyStaticObject2" parent="." instance=ExtResource("5_ikfeq")]
+position = Vector2(636, 499)
+scale = Vector2(8.1, 8.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="emptyStaticObject2"]
+position = Vector2(0, -2.59259)
+rotation = 1.5708
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("6_exl5f")
+
+[node name="sattelite" parent="." instance=ExtResource("7_di056")]
+position = Vector2(872, 398)
+
+[node name="sattelite2" parent="." instance=ExtResource("7_di056")]
+position = Vector2(633, 285)
+
+[node name="debris1" parent="." instance=ExtResource("8_lvpou")]
+position = Vector2(-17, 202)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="debris1"]
+libraries = {
+"": SubResource("AnimationLibrary_qxvwe")
+}
+autoplay = "move"
+
+[node name="dynamicSattelite" parent="." instance=ExtResource("9_m6dyj")]
+position = Vector2(413, 479)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dynamicSattelite"]
+libraries = {
+"": SubResource("AnimationLibrary_gcnv1")
+}
+autoplay = "mover"
+
+[node name="killZone" parent="." instance=ExtResource("4_qc86i")]
