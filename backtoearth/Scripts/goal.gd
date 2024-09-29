@@ -26,4 +26,10 @@ func _on_body_entered(body: Node2D) -> void:
 	elif level == "level6_1":
 		get_tree().change_scene_to_file("res://Scenes/level_6_2.tscn")
 	elif level == "level6_2":
+		get_tree().change_scene_to_file("res://Scenes/level_7_1.tscn")
+	elif level == "level7_1":
+		get_tree().change_scene_to_file("res://Scenes/level_7_1.tscn")
+	elif level == "level7_2":
+		get_tree().change_scene_to_file("res://Scenes/level_7_1.tscn")
+	elif level == "level8_1":
 		get_tree().change_scene_to_file("res://Scenes/win.tscn")
