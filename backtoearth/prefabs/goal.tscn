@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm5injpwl4eap"]
+
+[ext_resource type="Script" path="res://Scripts/goal.gd" id="1_ikqt0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hkrjp"]
+radius = 31.0161
+
+[node name="Goal" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_ikqt0")
+
+[node name="goalLocation" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hkrjp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

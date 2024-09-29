@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://xofaxm4nm0d5"]
+
+[ext_resource type="Texture2D" uid="uid://rxjwj36fdj3y" path="res://Sprites/big_satellite_2.png" id="1_sf5o1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iorr8"]
+size = Vector2(192, 384)
+
+[node name="sattelite" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_sf5o1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 0.171875)
+shape = SubResource("RectangleShape2D_iorr8")

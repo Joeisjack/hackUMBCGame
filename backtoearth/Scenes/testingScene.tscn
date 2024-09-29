@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfahn3dxap6q0"]
+[gd_scene load_steps=9 format=3 uid="uid://cfahn3dxap6q0"]
 
-[ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="1_3c4ss"]
-[ext_resource type="PackedScene" uid="uid://cclck3rdfon3k" path="res://prefabs/staticObject.tscn" id="2_hedi2"]
-[ext_resource type="PackedScene" uid="uid://dtv41pj2g4udx" path="res://prefabs/Rotator.tscn" id="4_rg5ux"]
+[ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="1_xjnk6"]
+[ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="2_0jhsy"]
+[ext_resource type="PackedScene" uid="uid://cclck3rdfon3k" path="res://prefabs/staticObject.tscn" id="3_1t18a"]
+[ext_resource type="PackedScene" uid="uid://dtv41pj2g4udx" path="res://prefabs/Rotator.tscn" id="4_dolcn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pvuvt"]
 
@@ -45,7 +46,11 @@ _data = {
 
 [node name="Game" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_3c4ss")]
+[node name="BgPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(565, 310)
+texture = ExtResource("1_xjnk6")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_0jhsy")]
 position = Vector2(461, 275)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -55,20 +60,13 @@ position = Vector2(-5, 2)
 position = Vector2(536, 646)
 shape = SubResource("WorldBoundaryShape2D_pvuvt")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 44.0
-offset_bottom = 26.0
-text = "Fuel: 100/100"
-
-[node name="staticObject" parent="." instance=ExtResource("2_hedi2")]
+[node name="staticObject" parent="." instance=ExtResource("3_1t18a")]
 position = Vector2(488, 327)
 
-[node name="staticObject2" parent="." instance=ExtResource("2_hedi2")]
+[node name="staticObject2" parent="." instance=ExtResource("3_1t18a")]
 position = Vector2(309, 359)
 
-[node name="AnimatableBody2D2" parent="." instance=ExtResource("4_rg5ux")]
+[node name="AnimatableBody2D2" parent="." instance=ExtResource("4_dolcn")]
 position = Vector2(1080, 505)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D2"]

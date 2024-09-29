@@ -1,0 +1,175 @@
+[gd_scene load_steps=13 format=3 uid="uid://ch1j5b627cjfx"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_dst32"]
+[ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="1_rqiij"]
+[ext_resource type="Texture2D" uid="uid://dmptie1eued0t" path="res://Sprites/Title.png" id="2_uts08"]
+[ext_resource type="Texture2D" uid="uid://dit7hsdgovar0" path="res://Sprites/Planets/Earth-1.png.png" id="3_odhvc"]
+
+[sub_resource type="Animation" id="Animation_2rywu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BgPlaceholder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1993, 1082)]
+}
+
+[sub_resource type="Animation" id="Animation_4saq3"]
+resource_name = "menuBackMove"
+length = 600.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BgPlaceholder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 599.533),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1993, 1082), Vector2(-852, -467)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ln16b"]
+_data = {
+"RESET": SubResource("Animation_2rywu"),
+"menuBackMove": SubResource("Animation_4saq3")
+}
+
+[sub_resource type="Animation" id="Animation_rvt31"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.261799]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.4375, 15.4375)]
+}
+
+[sub_resource type="Animation" id="Animation_vmkcw"]
+resource_name = "menuAnim"
+length = 6.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.261799, 0.261799, -0.261799]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4.06667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(15.4375, 15.4375), Vector2(17, 17), Vector2(15.4, 15.4), Vector2(17, 17)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvfpl"]
+_data = {
+"RESET": SubResource("Animation_rvt31"),
+"menuAnim": SubResource("Animation_vmkcw")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ywj2m"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_3mxjj"]
+font_size = 86
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_dst32")
+
+[node name="BgPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(1993, 1082)
+scale = Vector2(2.11852, 2.11852)
+texture = ExtResource("1_rqiij")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BgPlaceholder"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ln16b")
+}
+autoplay = "menuBackMove"
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(388.603, 209.25)
+scale = Vector2(0.521893, 0.521893)
+texture = ExtResource("2_uts08")
+
+[node name="Earth-1_png" type="Sprite2D" parent="."]
+position = Vector2(912, 209)
+rotation = 0.261799
+scale = Vector2(15.4375, 15.4375)
+texture = ExtResource("3_odhvc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Earth-1_png"]
+libraries = {
+"": SubResource("AnimationLibrary_jvfpl")
+}
+autoplay = "menuAnim"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 765.0
+offset_top = 452.0
+offset_right = 1144.0
+offset_bottom = 634.0
+text = "Made for HackUMBC
+Programming: Adam M
+Art and Sprites: Fogo K, Kassim C
+Level Design: Kassim C
+Music and SFX: Wil D"
+label_settings = SubResource("LabelSettings_ywj2m")
+
+[node name="playButton" type="Button" parent="."]
+offset_left = 59.0
+offset_top = 462.0
+offset_right = 436.0
+offset_bottom = 577.0
+
+[node name="Label" type="Label" parent="playButton"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -8.0
+offset_right = 379.0
+offset_bottom = 110.0
+text = "Play"
+label_settings = SubResource("LabelSettings_3mxjj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="playButton" to="." method="_on_play_button_pressed"]

@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	playerJump()
 	
 	# debug
-	$"../Label".text = "Fuel: " + str(round((jumpTimer.time_left / jumpTimer.wait_time) * 100)) + "/100"
+	# $"../Label".text = "Fuel: " + str(round((jumpTimer.time_left / jumpTimer.wait_time) * 100)) + "/100"
 	
 	fuel_bar.frame = 27 - floor((jumpTimer.time_left / jumpTimer.wait_time) * 27)
 	

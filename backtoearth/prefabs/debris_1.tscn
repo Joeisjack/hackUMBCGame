@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdbaod43qcg7i"]
+
+[ext_resource type="Texture2D" uid="uid://c0i6yky4ykr0u" path="res://Sprites/asteroid_1.2.png" id="1_s5vef"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_elxur"]
+radius = 24.0208
+
+[node name="debris1" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_s5vef")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_elxur")

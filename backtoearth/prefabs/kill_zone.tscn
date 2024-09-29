@@ -1,0 +1,135 @@
+[gd_scene load_steps=9 format=3 uid="uid://65lqufe5y4j8"]
+
+[ext_resource type="Texture2D" uid="uid://df785eviy6f2r" path="res://Sprites/Jumping Animation  (1).png" id="1_ab7q7"]
+[ext_resource type="Script" path="res://Scripts/kill_zone.gd" id="1_cp3u0"]
+[ext_resource type="Texture2D" uid="uid://w2ck45kamth" path="res://Sprites/Planets/Mars-1.png.png" id="2_co23f"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l5not"]
+
+[sub_resource type="Animation" id="Animation_wii6l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-196, 556)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_gqcjp"]
+resource_name = "playerDeath"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-196, 556), Vector2(1340, 343)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s4k0y"]
+_data = {
+"RESET": SubResource("Animation_wii6l"),
+"playerDeath": SubResource("Animation_gqcjp")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_55jsl"]
+font_size = 40
+
+[node name="killZone" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_cp3u0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 750)
+shape = SubResource("WorldBoundaryShape2D_l5not")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -100)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_l5not")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-100, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_l5not")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(1250, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_l5not")
+
+[node name="deadPlayer" type="Sprite2D" parent="."]
+position = Vector2(-196, 556)
+rotation = -1.5708
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("1_ab7q7")
+region_enabled = true
+region_rect = Rect2(63, 70, 23, 29)
+
+[node name="Sprite2D" type="Sprite2D" parent="deadPlayer"]
+position = Vector2(3.63636, -3.63636)
+scale = Vector2(0.1, 0.4)
+texture = ExtResource("2_co23f")
+
+[node name="Sprite2D2" type="Sprite2D" parent="deadPlayer"]
+position = Vector2(-2.72727, -7.27273)
+rotation = 0.664489
+scale = Vector2(0.1, 0.4)
+texture = ExtResource("2_co23f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="deadPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_s4k0y")
+}
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 1.25
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 346.0
+offset_top = 222.0
+offset_right = 800.0
+offset_bottom = 277.0
+text = "You were thrown back!!"
+label_settings = SubResource("LabelSettings_55jsl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

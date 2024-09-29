@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://ckhvcsvkjnp7t"]
+
+[ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="1_tbvek"]
+[ext_resource type="PackedScene" uid="uid://cqvgj3uudtnew" path="res://prefabs/empty_static_object.tscn" id="2_g43tf"]
+[ext_resource type="Texture2D" uid="uid://bffpqhh2owy6p" path="res://Sprites/Planets/Pluto-1.png.png" id="2_ph2wh"]
+[ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="3_edgyr"]
+[ext_resource type="PackedScene" uid="uid://65lqufe5y4j8" path="res://prefabs/kill_zone.tscn" id="5_ilqbl"]
+[ext_resource type="PackedScene" uid="uid://cclck3rdfon3k" path="res://prefabs/staticObject.tscn" id="6_sllxc"]
+[ext_resource type="Texture2D" uid="uid://rxjwj36fdj3y" path="res://Sprites/big_satellite_2.png" id="7_6c8lw"]
+[ext_resource type="PackedScene" uid="uid://cm5injpwl4eap" path="res://prefabs/goal.tscn" id="8_xjnol"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqkbp"]
+radius = 73.1642
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p5f1"]
+size = Vector2(188, 60)
+
+[node name="level1_1" type="Node2D"]
+
+[node name="BgPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(657, 354)
+texture = ExtResource("1_tbvek")
+
+[node name="Pluto" parent="." instance=ExtResource("2_g43tf")]
+position = Vector2(993, 499)
+
+[node name="Pluto" type="Sprite2D" parent="Pluto"]
+scale = Vector2(8, 8)
+texture = ExtResource("2_ph2wh")
+region_enabled = true
+region_rect = Rect2(104, 99, 19, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pluto"]
+shape = SubResource("CircleShape2D_uqkbp")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_edgyr")]
+position = Vector2(989, 374)
+
+[node name="sattelite" parent="." instance=ExtResource("6_sllxc")]
+position = Vector2(743, 372)
+
+[node name="Sprite2D2" type="Sprite2D" parent="sattelite"]
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("7_6c8lw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="sattelite"]
+shape = SubResource("RectangleShape2D_6p5f1")
+
+[node name="sattelite2" parent="." instance=ExtResource("6_sllxc")]
+position = Vector2(388, 324)
+
+[node name="Sprite2D2" type="Sprite2D" parent="sattelite2"]
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("7_6c8lw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="sattelite2"]
+shape = SubResource("RectangleShape2D_6p5f1")
+
+[node name="sattelite3" parent="." instance=ExtResource("6_sllxc")]
+position = Vector2(6, 464)
+
+[node name="Sprite2D2" type="Sprite2D" parent="sattelite3"]
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("7_6c8lw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="sattelite3"]
+shape = SubResource("RectangleShape2D_6p5f1")
+
+[node name="Goal" parent="." instance=ExtResource("8_xjnol")]
+position = Vector2(46, 400)
+
+[node name="killZone" parent="." instance=ExtResource("5_ilqbl")]

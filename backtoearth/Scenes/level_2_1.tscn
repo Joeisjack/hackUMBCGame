@@ -1,0 +1,179 @@
+[gd_scene load_steps=18 format=3 uid="uid://nggryil50ghs"]
+
+[ext_resource type="PackedScene" uid="uid://65lqufe5y4j8" path="res://prefabs/kill_zone.tscn" id="1_qugty"]
+[ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="2_fq3ei"]
+[ext_resource type="PackedScene" uid="uid://xofaxm4nm0d5" path="res://prefabs/sattelite.tscn" id="3_0fb62"]
+[ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="4_hbucs"]
+[ext_resource type="Texture2D" uid="uid://uqtfw24wk63o" path="res://Sprites/Planets/Neptune-1.png.png" id="5_xv0uq"]
+[ext_resource type="PackedScene" uid="uid://b5qsmnopyl8fl" path="res://prefabs/dynamic_sattelite.tscn" id="6_0o064"]
+[ext_resource type="PackedScene" uid="uid://cm5injpwl4eap" path="res://prefabs/goal.tscn" id="7_fijm8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_emtot"]
+radius = 92.6553
+
+[sub_resource type="Animation" id="Animation_n2vmv"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(876, 490), Vector2(676, 490)]
+}
+
+[sub_resource type="Animation" id="Animation_4nvr1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(876, 490)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwagj"]
+_data = {
+"RESET": SubResource("Animation_4nvr1"),
+"move": SubResource("Animation_n2vmv")
+}
+
+[sub_resource type="Animation" id="Animation_g0wtc"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(626, 346), Vector2(826, 346)]
+}
+
+[sub_resource type="Animation" id="Animation_2as01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(626, 346)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2g4n"]
+_data = {
+"RESET": SubResource("Animation_2as01"),
+"move": SubResource("Animation_g0wtc")
+}
+
+[sub_resource type="Animation" id="Animation_a11r2"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(436, 335), Vector2(196, 195)]
+}
+
+[sub_resource type="Animation" id="Animation_lobvs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(396, 195)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpoy6"]
+_data = {
+"RESET": SubResource("Animation_lobvs"),
+"move": SubResource("Animation_a11r2")
+}
+
+[node name="level2_1" type="Node2D"]
+
+[node name="BgPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(573, 458)
+texture = ExtResource("2_fq3ei")
+
+[node name="sattelite" parent="." instance=ExtResource("3_0fb62")]
+position = Vector2(1143, 593)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_hbucs")]
+position = Vector2(1089, 521)
+
+[node name="Neptune" type="StaticBody2D" parent="."]
+position = Vector2(-2, 282)
+
+[node name="Sprite2D" type="Sprite2D" parent="Neptune"]
+scale = Vector2(10, 10)
+texture = ExtResource("5_xv0uq")
+region_enabled = true
+region_rect = Rect2(7, 7, 19, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Neptune"]
+shape = SubResource("CircleShape2D_emtot")
+
+[node name="dynamicSattelite" parent="." instance=ExtResource("6_0o064")]
+position = Vector2(876, 490)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dynamicSattelite"]
+libraries = {
+"": SubResource("AnimationLibrary_vwagj")
+}
+autoplay = "move"
+
+[node name="dynamicSattelite2" parent="." instance=ExtResource("6_0o064")]
+position = Vector2(626, 346)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dynamicSattelite2"]
+libraries = {
+"": SubResource("AnimationLibrary_a2g4n")
+}
+autoplay = "move"
+
+[node name="dynamicSattelite3" parent="." instance=ExtResource("6_0o064")]
+position = Vector2(396, 195)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dynamicSattelite3"]
+libraries = {
+"": SubResource("AnimationLibrary_lpoy6")
+}
+autoplay = "move"
+
+[node name="killZone" parent="." instance=ExtResource("1_qugty")]
+
+[node name="Goal" parent="." instance=ExtResource("7_fijm8")]
+position = Vector2(43, 159)

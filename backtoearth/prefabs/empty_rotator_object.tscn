@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://jpe4y1fdxj0"]
+
+[node name="emptyRotatorObject" type="AnimatableBody2D"]
+position = Vector2(50, 2)

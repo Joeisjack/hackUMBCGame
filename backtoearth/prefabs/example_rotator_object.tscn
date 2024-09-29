@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://b62nwwo2bjca6"]
+
+[ext_resource type="PackedScene" uid="uid://bahnhb6m3lqo2" path="res://prefabs/empty_dynamic_object.tscn" id="1_g2iqn"]
+[ext_resource type="PackedScene" uid="uid://jpe4y1fdxj0" path="res://prefabs/empty_rotator_object.tscn" id="2_rpdhm"]
+[ext_resource type="Texture2D" uid="uid://b8fr6l8e7rsai" path="res://Sprites/Planets/Moon-1.png.png" id="3_krtrj"]
+[ext_resource type="Texture2D" uid="uid://dit7hsdgovar0" path="res://Sprites/Planets/Earth-1.png.png" id="4_roufb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bp3n8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rue7r"]
+
+[sub_resource type="Animation" id="Animation_tt0u7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dObjectSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rotatingObject/rObjectSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u0otd"]
+resource_name = "rotate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dObjectSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rotatingObject/rObjectSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y6a7t"]
+_data = {
+"RESET": SubResource("Animation_tt0u7"),
+"rotate": SubResource("Animation_u0otd")
+}
+
+[node name="exampleRotatorObject" type="Node2D"]
+
+[node name="dynamicObject" parent="." instance=ExtResource("1_g2iqn")]
+
+[node name="rotatingObject" parent="dynamicObject" instance=ExtResource("2_rpdhm")]
+
+[node name="rObjectSprite" type="Sprite2D" parent="dynamicObject/rotatingObject"]
+texture = ExtResource("3_krtrj")
+
+[node name="rObjectCollider" type="CollisionShape2D" parent="dynamicObject/rotatingObject"]
+shape = SubResource("CircleShape2D_bp3n8")
+
+[node name="dObjectSprite" type="Sprite2D" parent="dynamicObject"]
+texture = ExtResource("4_roufb")
+
+[node name="dObjectCollider" type="CollisionShape2D" parent="dynamicObject"]
+shape = SubResource("CircleShape2D_rue7r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dynamicObject"]
+libraries = {
+"": SubResource("AnimationLibrary_y6a7t")
+}
+autoplay = "rotate"
