@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://nggryil50ghs"]
+[gd_scene load_steps=22 format=3 uid="uid://nggryil50ghs"]
 
 [ext_resource type="PackedScene" uid="uid://65lqufe5y4j8" path="res://prefabs/kill_zone.tscn" id="1_qugty"]
 [ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="2_fq3ei"]
@@ -7,9 +7,25 @@
 [ext_resource type="Texture2D" uid="uid://uqtfw24wk63o" path="res://Sprites/Planets/Neptune-1.png.png" id="5_xv0uq"]
 [ext_resource type="PackedScene" uid="uid://b5qsmnopyl8fl" path="res://prefabs/dynamic_sattelite.tscn" id="6_0o064"]
 [ext_resource type="PackedScene" uid="uid://cm5injpwl4eap" path="res://prefabs/goal.tscn" id="7_fijm8"]
+[ext_resource type="PackedScene" uid="uid://bdbaod43qcg7i" path="res://prefabs/debris_1.tscn" id="8_7461j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_emtot"]
 radius = 92.6553
+
+[sub_resource type="Animation" id="Animation_4nvr1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(876, 490)]
+}
 
 [sub_resource type="Animation" id="Animation_n2vmv"]
 resource_name = "move"
@@ -27,7 +43,13 @@ tracks/0/keys = {
 "values": [Vector2(876, 490), Vector2(676, 490)]
 }
 
-[sub_resource type="Animation" id="Animation_4nvr1"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwagj"]
+_data = {
+"RESET": SubResource("Animation_4nvr1"),
+"move": SubResource("Animation_n2vmv")
+}
+
+[sub_resource type="Animation" id="Animation_2as01"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -39,13 +61,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(876, 490)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwagj"]
-_data = {
-"RESET": SubResource("Animation_4nvr1"),
-"move": SubResource("Animation_n2vmv")
+"values": [Vector2(626, 346)]
 }
 
 [sub_resource type="Animation" id="Animation_g0wtc"]
@@ -64,7 +80,13 @@ tracks/0/keys = {
 "values": [Vector2(626, 346), Vector2(826, 346)]
 }
 
-[sub_resource type="Animation" id="Animation_2as01"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2g4n"]
+_data = {
+"RESET": SubResource("Animation_2as01"),
+"move": SubResource("Animation_g0wtc")
+}
+
+[sub_resource type="Animation" id="Animation_lobvs"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -76,13 +98,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(626, 346)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2g4n"]
-_data = {
-"RESET": SubResource("Animation_2as01"),
-"move": SubResource("Animation_g0wtc")
+"values": [Vector2(396, 195)]
 }
 
 [sub_resource type="Animation" id="Animation_a11r2"]
@@ -101,7 +117,30 @@ tracks/0/keys = {
 "values": [Vector2(436, 335), Vector2(196, 195)]
 }
 
-[sub_resource type="Animation" id="Animation_lobvs"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpoy6"]
+_data = {
+"RESET": SubResource("Animation_lobvs"),
+"move": SubResource("Animation_a11r2")
+}
+
+[sub_resource type="Animation" id="Animation_vcxyt"]
+resource_name = "move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333, 0.966667, 1, 1.03333, 1.5, 1.93333, 1.96667, 2, 2.03333, 2.46667, 2.93333, 2.96667, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-87, 438), Vector2(1229, 384), Vector2(1236, 1568), Vector2(-165, 885), Vector2(-46, 110), Vector2(588, 96), Vector2(1261, 226), Vector2(1292, -663), Vector2(-382, -550), Vector2(-88, 518), Vector2(591, 239), Vector2(1338, 135), Vector2(574, -551), Vector2(-55, -141), Vector2(463, 596), Vector2(1401, 495)]
+}
+
+[sub_resource type="Animation" id="Animation_25vfm"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -113,13 +152,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(396, 195)]
+"values": [Vector2(-87, 438)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpoy6"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p14cn"]
 _data = {
-"RESET": SubResource("Animation_lobvs"),
-"move": SubResource("Animation_a11r2")
+"RESET": SubResource("Animation_25vfm"),
+"move": SubResource("Animation_vcxyt")
 }
 
 [node name="level2_1" type="Node2D"]
@@ -177,3 +216,13 @@ autoplay = "move"
 
 [node name="Goal" parent="." instance=ExtResource("7_fijm8")]
 position = Vector2(43, 159)
+
+[node name="debris1" parent="." instance=ExtResource("8_7461j")]
+position = Vector2(-87, 438)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="debris1"]
+libraries = {
+"": SubResource("AnimationLibrary_p14cn")
+}
+autoplay = "move"
+speed_scale = 0.5
