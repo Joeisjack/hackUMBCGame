@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://h65acdd31h0w"]
+
+[ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="1_kdkk2"]
+[ext_resource type="PackedScene" uid="uid://cm5injpwl4eap" path="res://prefabs/goal.tscn" id="2_k2one"]
+[ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="3_j6ybx"]
+[ext_resource type="PackedScene" uid="uid://65lqufe5y4j8" path="res://prefabs/kill_zone.tscn" id="4_qc86i"]
+[ext_resource type="PackedScene" uid="uid://cqvgj3uudtnew" path="res://prefabs/empty_static_object.tscn" id="5_ikfeq"]
+[ext_resource type="Texture2D" uid="uid://b8fr6l8e7rsai" path="res://Sprites/Planets/Moon-1.png.png" id="6_0cf7x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0bjd3"]
+
+[node name="level4_2" type="Node2D"]
+
+[node name="BGPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(387, 476)
+texture = ExtResource("1_kdkk2")
+
+[node name="Goal" parent="." instance=ExtResource("2_k2one")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_j6ybx")]
+position = Vector2(1110, 310)
+
+[node name="killZone" parent="." instance=ExtResource("4_qc86i")]
+
+[node name="emptyStaticObject" parent="." instance=ExtResource("5_ikfeq")]
+position = Vector2(1107, 426)
+scale = Vector2(8.1, 8.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="emptyStaticObject"]
+texture = ExtResource("6_0cf7x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="emptyStaticObject"]
+shape = SubResource("CircleShape2D_0bjd3")
