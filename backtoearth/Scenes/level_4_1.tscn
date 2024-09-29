@@ -1,0 +1,438 @@
+[gd_scene load_steps=35 format=3 uid="uid://ccr8ncc3i6nv3"]
+
+[ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="1_kd88a"]
+[ext_resource type="PackedScene" uid="uid://cm5injpwl4eap" path="res://prefabs/goal.tscn" id="2_fohtw"]
+[ext_resource type="PackedScene" uid="uid://bhd6sw6ymbk71" path="res://prefabs/player.tscn" id="3_2v7jo"]
+[ext_resource type="PackedScene" uid="uid://65lqufe5y4j8" path="res://prefabs/kill_zone.tscn" id="4_14v6d"]
+[ext_resource type="PackedScene" uid="uid://xofaxm4nm0d5" path="res://prefabs/sattelite.tscn" id="4_ktmml"]
+[ext_resource type="PackedScene" uid="uid://cqvgj3uudtnew" path="res://prefabs/empty_static_object.tscn" id="5_w828o"]
+[ext_resource type="PackedScene" uid="uid://b5qsmnopyl8fl" path="res://prefabs/dynamic_sattelite.tscn" id="5_yme5e"]
+[ext_resource type="Texture2D" uid="uid://b0xbijmpu7iv6" path="res://Sprites/Planets/Saturn-1.png.png" id="6_me0bn"]
+[ext_resource type="PackedScene" uid="uid://bdbaod43qcg7i" path="res://prefabs/debris_1.tscn" id="8_jqor2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35spr"]
+
+[sub_resource type="Animation" id="Animation_632qy"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(986, 559), Vector2(850, 559)]
+}
+
+[sub_resource type="Animation" id="Animation_a310q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(986, 559)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qich"]
+_data = {
+"RESET": SubResource("Animation_a310q"),
+"move": SubResource("Animation_632qy")
+}
+
+[sub_resource type="Animation" id="Animation_8436w"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(543, 111), Vector2(638.73, 111)]
+}
+
+[sub_resource type="Animation" id="Animation_n4lt6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(543, 111)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5luw"]
+_data = {
+"RESET": SubResource("Animation_n4lt6"),
+"move": SubResource("Animation_8436w")
+}
+
+[sub_resource type="Animation" id="Animation_b32s8"]
+resource_name = "move"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1167, 582), Vector2(889, -29)]
+}
+
+[sub_resource type="Animation" id="Animation_48v75"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1167, 582)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ud18s"]
+_data = {
+"RESET": SubResource("Animation_48v75"),
+"move": SubResource("Animation_b32s8")
+}
+
+[sub_resource type="Animation" id="Animation_g7ouy"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(767, 668), Vector2(1109, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_5v0fv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(767, 668)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_moefi"]
+_data = {
+"RESET": SubResource("Animation_5v0fv"),
+"new_animation": SubResource("Animation_g7ouy")
+}
+
+[sub_resource type="Animation" id="Animation_042qx"]
+resource_name = "move"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.56667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 8), Vector2(245, 13), Vector2(259, -59)]
+}
+
+[sub_resource type="Animation" id="Animation_iy8f5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, 37)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3g2sx"]
+_data = {
+"RESET": SubResource("Animation_iy8f5"),
+"move": SubResource("Animation_042qx")
+}
+
+[sub_resource type="Animation" id="Animation_f0x7t"]
+resource_name = "move"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(363, 670), Vector2(-19, 101)]
+}
+
+[sub_resource type="Animation" id="Animation_ca4uu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(363, 670)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqjjm"]
+_data = {
+"RESET": SubResource("Animation_ca4uu"),
+"move": SubResource("Animation_f0x7t")
+}
+
+[sub_resource type="Animation" id="Animation_6fadm"]
+resource_name = "move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-27, 184), Vector2(435, 670)]
+}
+
+[sub_resource type="Animation" id="Animation_y32bm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-27, 184)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nlb8"]
+_data = {
+"RESET": SubResource("Animation_y32bm"),
+"move": SubResource("Animation_6fadm")
+}
+
+[sub_resource type="Animation" id="Animation_14ll0"]
+resource_name = "move"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-27, 280), Vector2(416, 672)]
+}
+
+[sub_resource type="Animation" id="Animation_lcebr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-27, 280)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cf8bs"]
+_data = {
+"RESET": SubResource("Animation_lcebr"),
+"move": SubResource("Animation_14ll0")
+}
+
+[node name="level2_2" type="Node2D"]
+
+[node name="BgPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(824, 322)
+texture = ExtResource("1_kd88a")
+
+[node name="Goal" parent="." instance=ExtResource("2_fohtw")]
+position = Vector2(80, 466)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_2v7jo")]
+position = Vector2(1108, 136)
+
+[node name="sattelite" parent="." instance=ExtResource("4_ktmml")]
+position = Vector2(1151, 209)
+
+[node name="emptyStaticObject" parent="." instance=ExtResource("5_w828o")]
+position = Vector2(-37.89, 406.22)
+
+[node name="Sprite2D" type="Sprite2D" parent="emptyStaticObject"]
+scale = Vector2(8.1, 8.1)
+texture = ExtResource("6_me0bn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="emptyStaticObject"]
+shape = SubResource("CircleShape2D_35spr")
+
+[node name="sattelite4" parent="." instance=ExtResource("4_ktmml")]
+position = Vector2(611, 492)
+
+[node name="sattelite5" parent="." instance=ExtResource("4_ktmml")]
+position = Vector2(544, 387)
+
+[node name="sattelite6" parent="." instance=ExtResource("4_ktmml")]
+position = Vector2(634, 257)
+
+[node name="sattelite7" parent="." instance=ExtResource("4_ktmml")]
+position = Vector2(196, 146)
+
+[node name="sattelite8" parent="." instance=ExtResource("4_ktmml")]
+position = Vector2(82, 540)
+
+[node name="sattelite2" parent="." instance=ExtResource("4_ktmml")]
+position = Vector2(808, 190)
+rotation = 1.5708
+scale = Vector2(2, 2)
+
+[node name="sattelite3" parent="." instance=ExtResource("4_ktmml")]
+position = Vector2(370, 273)
+rotation = 1.5708
+scale = Vector2(2, 2)
+
+[node name="dynamicSattelite" parent="." instance=ExtResource("5_yme5e")]
+position = Vector2(986, 559)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dynamicSattelite"]
+libraries = {
+"": SubResource("AnimationLibrary_7qich")
+}
+autoplay = "move"
+
+[node name="dynamicSattelite2" parent="." instance=ExtResource("5_yme5e")]
+position = Vector2(543, 111)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dynamicSattelite2"]
+libraries = {
+"": SubResource("AnimationLibrary_p5luw")
+}
+autoplay = "move"
+
+[node name="debris1" parent="." instance=ExtResource("8_jqor2")]
+position = Vector2(1167, 582)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="debris1"]
+libraries = {
+"": SubResource("AnimationLibrary_ud18s")
+}
+autoplay = "move"
+
+[node name="debris2" parent="." instance=ExtResource("8_jqor2")]
+position = Vector2(767, 668)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="debris2"]
+libraries = {
+"": SubResource("AnimationLibrary_moefi")
+}
+autoplay = "new_animation"
+
+[node name="debris3" parent="." instance=ExtResource("8_jqor2")]
+position = Vector2(-3, 37)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="debris3"]
+libraries = {
+"": SubResource("AnimationLibrary_3g2sx")
+}
+autoplay = "move"
+
+[node name="debris4" parent="." instance=ExtResource("8_jqor2")]
+position = Vector2(363, 670)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="debris4"]
+libraries = {
+"": SubResource("AnimationLibrary_hqjjm")
+}
+autoplay = "move"
+
+[node name="debris5" parent="." instance=ExtResource("8_jqor2")]
+position = Vector2(-27, 184)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="debris5"]
+libraries = {
+"": SubResource("AnimationLibrary_2nlb8")
+}
+autoplay = "move"
+
+[node name="debris6" parent="." instance=ExtResource("8_jqor2")]
+position = Vector2(-27, 280)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="debris6"]
+libraries = {
+"": SubResource("AnimationLibrary_cf8bs")
+}
+autoplay = "move"
+
+[node name="killZone" parent="." instance=ExtResource("4_14v6d")]
