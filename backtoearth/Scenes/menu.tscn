@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ch1j5b627cjfx"]
+[gd_scene load_steps=16 format=3 uid="uid://ch1j5b627cjfx"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_dst32"]
 [ext_resource type="Texture2D" uid="uid://dlmd5w2c2o8fe" path="res://Sprites/bg_placeholder.png" id="1_rqiij"]
 [ext_resource type="Texture2D" uid="uid://dmptie1eued0t" path="res://Sprites/Title.png" id="2_uts08"]
+[ext_resource type="FontFile" uid="uid://gu2jqsula8ap" path="res://Sprites/04B_30__.TTF" id="3_oatxw"]
 [ext_resource type="Texture2D" uid="uid://dit7hsdgovar0" path="res://Sprites/Planets/Earth-1.png.png" id="3_odhvc"]
 
 [sub_resource type="Animation" id="Animation_2rywu"]
@@ -42,6 +43,15 @@ _data = {
 "RESET": SubResource("Animation_2rywu"),
 "menuBackMove": SubResource("Animation_4saq3")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_mcotg"]
+font = ExtResource("3_oatxw")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_jcwsw"]
+font = ExtResource("3_oatxw")
+font_size = 150
+font_color = Color(0.556863, 0.0509804, 0.541176, 1)
 
 [sub_resource type="Animation" id="Animation_rvt31"]
 length = 0.001
@@ -127,9 +137,27 @@ libraries = {
 autoplay = "menuBackMove"
 
 [node name="Title" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(388.603, 209.25)
 scale = Vector2(0.521893, 0.521893)
 texture = ExtResource("2_uts08")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 532.0
+offset_top = 101.0
+offset_right = 664.0
+offset_bottom = 182.0
+text = "to"
+label_settings = SubResource("LabelSettings_mcotg")
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 27.0
+offset_top = 63.0
+offset_right = 490.0
+offset_bottom = 379.0
+text = "Back
+Earth"
+label_settings = SubResource("LabelSettings_jcwsw")
 
 [node name="Earth-1_png" type="Sprite2D" parent="."]
 position = Vector2(912, 209)
