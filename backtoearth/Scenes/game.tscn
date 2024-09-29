@@ -76,3 +76,5 @@ libraries = {
 "": SubResource("AnimationLibrary_xopyf")
 }
 autoplay = "move"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]

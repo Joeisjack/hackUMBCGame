@@ -123,7 +123,7 @@ scale = Vector2(2.2, 2.2)
 sprite_frames = SubResource("SpriteFrames_duj5w")
 animation = &"thrusting"
 autoplay = "idle"
-frame_progress = 0.455671
+frame_progress = 0.621081
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)

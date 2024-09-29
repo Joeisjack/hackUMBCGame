@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bjry7jp31ntgi"
+path="res://.godot/imported/SFX [boba].wav-a54535baf078541e7d97dd6a8dfe939c.sample"
+
+[deps]
+
+source_file="res://Audio/unedited sounds/SFX [boba].wav"
+dest_files=["res://.godot/imported/SFX [boba].wav-a54535baf078541e7d97dd6a8dfe939c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

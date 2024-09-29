@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m7rfd7vc1bdw"
+path="res://.godot/imported/lia_signature lia signature idea 2 aka 2012.mp3-7108932f3758375ba04bdaab229d05d2.mp3str"
+
+[deps]
+
+source_file="res://Audio/inst/lia_signature lia signature idea 2 aka 2012.mp3"
+dest_files=["res://.godot/imported/lia_signature lia signature idea 2 aka 2012.mp3-7108932f3758375ba04bdaab229d05d2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

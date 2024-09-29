@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvccfra00nxcv"
+path="res://.godot/imported/SFX [moshi moshi].wav-22e25ab0c322e8df610b16eb6517aebc.sample"
+
+[deps]
+
+source_file="res://Audio/unedited sounds/SFX [moshi moshi].wav"
+dest_files=["res://.godot/imported/SFX [moshi moshi].wav-22e25ab0c322e8df610b16eb6517aebc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c7b1e0y7nq8t5"
+path="res://.godot/imported/@bldcarla - coin sfx.wav-74547ea7fb34be0ed6f64a3987fce198.sample"
+
+[deps]
+
+source_file="res://Audio/unedited sounds/@bldcarla - coin sfx.wav"
+dest_files=["res://.godot/imported/@bldcarla - coin sfx.wav-74547ea7fb34be0ed6f64a3987fce198.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

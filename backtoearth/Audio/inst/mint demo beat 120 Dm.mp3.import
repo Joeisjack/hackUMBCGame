@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4fe8hw35tnbk"
+path="res://.godot/imported/mint demo beat 120 Dm.mp3-a5caf50e83a42666a037f695454defec.mp3str"
+
+[deps]
+
+source_file="res://Audio/inst/mint demo beat 120 Dm.mp3"
+dest_files=["res://.godot/imported/mint demo beat 120 Dm.mp3-a5caf50e83a42666a037f695454defec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
