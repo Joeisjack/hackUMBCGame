@@ -7,6 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://cm5injpwl4eap" path="res://prefabs/goal.tscn" id="5_wiwfx"]
 [ext_resource type="PackedScene" uid="uid://bdbaod43qcg7i" path="res://prefabs/debris_1.tscn" id="6_8jvhk"]
 
+[sub_resource type="Animation" id="Animation_r07h4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(828, 703)]
+}
+
 [sub_resource type="Animation" id="Animation_2a1l7"]
 resource_name = "move"
 loop_mode = 1
@@ -23,7 +38,13 @@ tracks/0/keys = {
 "values": [Vector2(828, 703), Vector2(1253, 5)]
 }
 
-[sub_resource type="Animation" id="Animation_r07h4"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7b1c4"]
+_data = {
+"RESET": SubResource("Animation_r07h4"),
+"move": SubResource("Animation_2a1l7")
+}
+
+[sub_resource type="Animation" id="Animation_uv3kx"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -35,13 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(828, 703)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7b1c4"]
-_data = {
-"RESET": SubResource("Animation_r07h4"),
-"move": SubResource("Animation_2a1l7")
+"values": [Vector2(701, 688)]
 }
 
 [sub_resource type="Animation" id="Animation_sdkrd"]
@@ -58,21 +73,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(418, 713), Vector2(685, 273), Vector2(1119, -74)]
-}
-
-[sub_resource type="Animation" id="Animation_uv3kx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(701, 688)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xq2gr"]
