@@ -9,13 +9,11 @@ var ableToJump = false
 
 var isJumping = false
 
-var cTimer
-var jumpTimer
+@onready var cTimer: Timer = $CoyoteTimer
 
-func _on_ready() -> void:
-	cTimer = $CoyoteTimer
-	jumpTimer = $VarJumpTimer
+@onready var jumpTimer: Timer = $VarJumpTimer
 
+@onready var playerSprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:	
 	# Add the gravity.
@@ -30,9 +28,26 @@ func _physics_process(delta: float) -> void:
 	# debug
 	$"../Label".text = "Fuel: " + str(round((jumpTimer.time_left / jumpTimer.wait_time) * 100)) + "/100"
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# Get Input direction (-1, 0, 1)
 	var direction := Input.get_axis("Left", "Right")
+	
+	# Flip the sprite
+	if direction > 0:
+		playerSprite.flip_h = false
+	elif direction < 0:
+		playerSprite.flip_h = true
+	
+	
+	if velocity.y > 0:
+		playerSprite.play("falling")
+	elif not jumpTimer.paused:
+		playerSprite.play("thrusting")
+	elif direction == 0:
+		playerSprite.play("idle")
+	else:
+		playerSprite.play("moving")
+	
+	
 	if direction:
 		velocity.x = direction * SPEED
 	else:
